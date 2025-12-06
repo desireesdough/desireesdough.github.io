@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bread Co. — Order</title>
+<link rel="stylesheet" href="bakery-style.css">
+</head>
+<body>
+<header>
+  <div><strong>Bread Co.</strong></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="order.html">Order</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<section class="product-grid">
+  <!-- Plain Sourdough -->
+  <div class="card" id="cardSourdough">
+    <div class="img-placeholder">Sourdough Loaf</div>
+    <h3>Plain Sourdough</h3>
+    <p>$6 / loaf</p>
+    <button onclick="showQuantity('qtySourdough', this)">Add to Cart</button>
+    <input type="number" min="1" value="1" class="quantity-selector" id="qtySourdough">
+    <button onclick="addToCart('Plain Sourdough',6,'qtySourdough', this)" id="confirmSourdough" style="display:none; margin-top:0.3rem;">Confirm</button>
+  </div>
+
+  <!-- Crackers -->
+  <div class="card" id="cardCrackers">
+    <div class="img-placeholder">Crackers</div>
+    <h3>Crackers</h3>
+    <p>$2.50 / order</p>
+    <button onclick="showQuantity('qtyCrackers', this)">Add to Cart</button>
+    <input type="number" min="1" value="1" class="quantity-selector" id="qtyCrackers">
+    <button onclick="addToCart('Crackers',2.5,'qtyCrackers', this)" id="confirmCrackers" style="display:none; margin-top:0.3rem;">Confirm</button>
+  </div>
+
+  <!-- Inclusion Loaf -->
+  <div class="card" id="cardInclusion">
+    <div class="img-placeholder">Inclusion Loaf</div>
+    <h3>Inclusion Loaf</h3>
+    <p>$8 / loaf</p>
+    <button onclick="showQuantity('qtyInclusion', this)">Add to Cart</button>
+    <input type="number" min="1" value="1" class="quantity-selector" id="qtyInclusion">
+    <button onclick="addToCart('Inclusion Loaf',8,'qtyInclusion', this)" id="confirmInclusion" style="display:none; margin-top:0.3rem;">Confirm</button>
+  </div>
+</section>
+
+<section class="cart-section">
+  <h2>Your Cart</h2>
+  <ul id="cart"></ul>
+  <p>Total: $<span id="total">0.00</span></p>
+
+  <h3>Pickup Date & Info</h3>
+  <input type="text" id="datePicker" placeholder="Select a pickup date">
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="contact" placeholder="Email or Phone">
+
+  <button onclick="submitOrder()">Submit Order (Demo)</button>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="order.js"></script>
+</body>
+</html>
