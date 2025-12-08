@@ -19,6 +19,7 @@
     .card.special::before{content:'FLAVOR OF THE MONTH';position:absolute;right:12px;top:12px;padding:6px 10px;background:rgba(193,134,92,.12);border-radius:6px;font-size:0.75rem;color:var(--accent-dark)}
     .title{display:flex;align-items:center;justify-content:space-between}
     .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .SmallImage{height: auto;width: 500px;border-radius: 2%;box-shadow: 10px 10px 8px 10px #888888}
     select { padding:10px;border-radius:8px;border:1px solid #e0c9b0;background:white }
     .qty { display:none; padding:8px;border-radius:8px;border:1px solid #e0c9b0;background:white; }
     .btn { background:var(--accent);border:none;color:white;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600 }
@@ -60,7 +61,7 @@
         <!-- First special card -->
         <article class="card special" data-item="Mint Chocolate Chip Loaf">
           <div class="title"><strong>Mint Chocolate Chip Loaf</strong></div>
-          <img src="images/MintChocLoaf.jpg" alt="Order image 1">
+          <img src="images/MintChocLoaf.jpg" class="SmallImage" alt="Order image 1">
           <div class="controls">
             <select class="size" aria-label="Size selector">
               <option value="">Size…</option>
@@ -98,7 +99,7 @@
 
         <article class="card" data-item="Chocolate Chip Cookies">
           <div class="title"><strong>Brown Butter Sourdough Chocolate Chip Cookies</strong></div>
-          <img src="images/ChocChipCookies" alt="Order image 3">
+          <img src="images/ChocChipCookies" class="SmallImage" alt="Order image 3">
           <div class="controls">
             <select class="size">
               <option value="">Size…</option>
@@ -122,7 +123,7 @@
 
         <hr style="margin:12px 0;border:none;border-top:1px solid #efe0d2">
 
-        <h4>Pickup Date</h4>
+        <h4>Pickup Date</h4><p>Note - pickup date is not guaranteed and is based on capacity. If there is an issue I will contact you using the information provided.</p>
         <input id="dateInput" placeholder="Select pickup date" readonly style="padding:10px;border-radius:8px;border:1px solid #e0c9b0;background:white;cursor:pointer;">
 
         <h4 style="margin-top:12px">Your Details</h4>
