@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Artisan Bakery — Place Order</title>
+  <title>Desiree's Dough — Place Order</title>
 
   <!-- Rustic artisan styling (keeps the look you asked for). You can move this to a CSS file later. -->
   <style>
@@ -16,7 +16,7 @@
     .menu{display:flex;flex-direction:column;gap:16px;margin:18px 0}
     .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:8px}
     .card.special{border:3px dashed rgba(193,134,92,.25);position:relative}
-    .card.special::before{content:'SPECIAL';position:absolute;right:12px;top:12px;padding:6px 10px;background:rgba(193,134,92,.12);border-radius:6px;font-size:0.75rem;color:var(--accent-dark)}
+    .card.special::before{content:'FLAVOR OF THE MONTH';position:absolute;right:12px;top:12px;padding:6px 10px;background:rgba(193,134,92,.12);border-radius:6px;font-size:0.75rem;color:var(--accent-dark)}
     .title{display:flex;align-items:center;justify-content:space-between}
     .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     select { padding:10px;border-radius:8px;border:1px solid #e0c9b0;background:white }
@@ -42,25 +42,30 @@
 <body>
   <div class="container">
     <header>
-      <h1>Artisan Bakery — Place Order</h1>
+      <h1>Desiree's Dough — Place Your Order</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="order.html">Order</a>
+        <a href="about.html">About</a>
+      </nav>
     </header>
 
     <section class="intro">
       <h2>Order for pick-up</h2>
-      <p>Choose size (Regular $8 / Mini $5), then quantity, then confirm to add to cart. Pickup calendar shows availability; unavailable dates are greyed out.</p>
+      <p>Pickup is located near Lynn Lane and Washington (177th and 91st) in Broken Arrow. Bake days are Tuesday, Thursday, and Saturday and limited to 9 items (total across orders) per day. If you have a large order or need it on a different day you can email me at desireesdough@gmail.com and we can discuss availability.</p>
     </section>
 
     <main>
       <section class="menu" id="menu">
         <!-- First special card -->
         <article class="card special" data-item="Mint Chocolate Chip Loaf">
-          <div class="title"><strong>Mint Chocolate Chip Loaf</strong><div class="price">Regular $8 — Mini $5</div></div>
-          <p class="desc">Seasonal mint + dark chocolate chips. (Replace image at /images/mint-loaf.jpg)</p>
+          <div class="title"><strong>Mint Chocolate Chip Loaf</strong></div>
+          <img src="images/MintChocLoaf.jpg" alt="Order image 1">
           <div class="controls">
             <select class="size" aria-label="Size selector">
-              <option value="">Choose size…</option>
-              <option value="regular" data-price="8">Regular — $8</option>
-              <option value="mini" data-price="5">Mini — $5</option>
+              <option value="">Size…</option>
+              <option value="regular" data-price="8">Regular — $9</option>
+              <option value="mini" data-price="5">Mini — $7</option>
             </select>
 
             <select class="qty" aria-label="Quantity selector">
@@ -69,42 +74,41 @@
               <option value="4">4</option><option value="5">5</option>
             </select>
 
-            <button class="btn confirm disabled" disabled>Confirm Add</button>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
           </div>
         </article>
 
         <!-- Other cards -->
         <article class="card" data-item="Plain Sourdough">
-          <div class="title"><strong>Plain Sourdough</strong><div class="price">Regular $8 — Mini $5</div></div>
-          <p class="desc">Classic crusty loaf. (Replace image at /images/sourdough.jpg)</p>
+          <div class="title"><strong>Plain Loaf</strong></div>
+          <!-- image -->
           <div class="controls">
             <select class="size">
-              <option value="">Choose size…</option>
+              <option value="">Size…</option>
               <option value="regular" data-price="8">Regular — $8</option>
-              <option value="mini" data-price="5">Mini — $5</option>
+              <option value="mini" data-price="5">Mini — $4</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
               <option value="4">4</option><option value="5">5</option>
             </select>
-            <button class="btn confirm disabled" disabled>Confirm Add</button>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
           </div>
         </article>
 
-        <article class="card" data-item="Crackers">
-          <div class="title"><strong>Crackers</strong><div class="price">Regular $8 — Mini $5</div></div>
-          <p class="desc">Delicious crispy crackers. (Replace image at /images/crackers.jpg)</p>
+        <article class="card" data-item="Chocolate Chip Cookies">
+          <div class="title"><strong>Brown Butter Sourdough Chocolate Chip Cookies</strong></div>
+          <img src="images/ChocChipCookies" alt="Order image 3">
           <div class="controls">
             <select class="size">
-              <option value="">Choose size…</option>
-              <option value="regular" data-price="8">Regular — $8</option>
-              <option value="mini" data-price="5">Mini — $5</option>
+              <option value="">Size…</option>
+              <option value="regular" data-price="8">1 Dozen — $7</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
               <option value="4">4</option><option value="5">5</option>
             </select>
-            <button class="btn confirm disabled" disabled>Confirm Add</button>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
           </div>
         </article>
 
@@ -133,8 +137,9 @@
         <div class="notice" id="messageBox"></div>
 
         <div style="margin-top:14px">
-          <a class="pay-link" id="venmo" href="https://venmo.com" target="_blank">Venmo</a>
-          <a class="pay-link" id="cashapp" href="https://cash.app" target="_blank">Cash App</a>
+          <a class="pay-link" id="venmo" href="https://venmo.com/desireedough" target="_blank">Venmo</a>
+          <a class="pay-link" id="cashapp" href="https://cash.app/$desireedough" target="_blank">Cash App</a>
+          <p>Paypal Upon Request</p>
         </div>
       </aside>
 
