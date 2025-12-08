@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place an Order</title>
+
+    <!-- Rustic Artisan Styling (linked to external .css if preferred) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Flatpickr Calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+
+<header class="top-banner">
+    <h1>Fresh • Small Batch • Made to Order</h1>
+</header>
+
+<div class="order-container">
+
+    <!-- 🥇 SPECIAL OF THE MONTH -->
+    <div class="order-card special">
+        <h2>Mint Chocolate Chip Loaf</h2>
+        <p class="subtitle">Special of The Month ⭐</p>
+
+        <label>Select Size:</label>
+        <select class="size-select" data-item="Mint Chocolate Chip Loaf">
+            <option value="">Choose one...</option>
+            <option value="8">Regular — $8</option>
+            <option value="5">Mini — $5</option>
+        </select>
+
+        <select class="qty-select hidden">
+            <option value="">Qty</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+
+        <button class="confirm-btn hidden">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCT CARD TEMPLATE — DUPLICATE AS NEEDED -->
+    <div class="order-card">
+        <h2>Plain Sourdough</h2>
+        <label>Select Size:</label>
+        <select class="size-select" data-item="Plain Sourdough">
+            <option value="">Choose one...</option>
+            <option value="8">Regular — $8</option>
+            <option value="5">Mini — $5</option>
+        </select>
+
+        <select class="qty-select hidden">
+            <option value="">Qty</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+
+        <button class="confirm-btn hidden">Add to Cart</button>
+    </div>
+
+    <div class="order-card">
+        <h2>Crackers</h2>
+        <label>Select Size:</label>
+        <select class="size-select" data-item="Crackers">
+            <option value="">Choose one...</option>
+            <option value="8">Regular — $8</option>
+            <option value="5">Mini — $5</option>
+        </select>
+
+        <select class="qty-select hidden">
+            <option value="">Qty</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+
+        <button class="confirm-btn hidden">Add to Cart</button>
+    </div>
+
+</div>
+
+<!-- CART + DATE SELECTION -->
+<section class="checkout">
+    <h2>Pick-Up Date</h2>
+    <input id="datePicker" placeholder="Choose a date">
+
+    <h2>Your Info</h2>
+    <input id="customerName" placeholder="Full Name">
+    <input id="contact" placeholder="Email or Phone">
+
+    <button id="submitOrder" disabled>Submit Order</button>
+
+    <p id="confirmation" class="hidden success-msg">
+        Order received — <strong>payment needed to finalize.</strong><br>
+        Choose a payment method below ⬇
+    </p>
+
+    <div id="payment-links" class="hidden">
+        <a href="https://venmo.com" target="_blank">Venmo</a> |
+        <a href="https://cash.app" target="_blank">CashApp</a>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="order.js"></script>
+
+</body>
+</html>
