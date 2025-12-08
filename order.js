@@ -325,7 +325,7 @@ async function handleSubmit(){
   if(result.ok){
     // success
     messageBox.style.display = 'block';
-    messageBox.innerText = 'Order tentatively accepted. Payment required to finalize. Use Venmo or Cash App links below.';
+    messageBox.innerText = 'Order tentatively accepted, payment is required to finalize. Please use Venmo or Cash App links below.';
     // clear cart and re-render
     cart = [];
     renderCart();
@@ -335,7 +335,7 @@ async function handleSubmit(){
   } else {
     // failure — still show tentative message but warn user
     messageBox.style.display = 'block';
-    messageBox.innerText = 'Order tentatively accepted (could not reach backend). Please contact us if you do not receive a confirmation. Payment required to finalize.';
+    messageBox.innerText = 'Something went wrong. Please contact us if you do not receive a confirmation.';
     // do NOT clear cart in this failure path (so user can retry)
   }
 }
