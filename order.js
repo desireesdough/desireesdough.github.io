@@ -1,84 +1,391 @@
-/* ===========================================================
-   MENU ITEM INTERACTION LOGIC
-   Handles "Add to Cart" actions for each item card.
-   When clicked:
-   - Button visually fades & becomes disabled
-   - A quantity selector appears below the item
-   - User confirms quantity before finalizing
-=========================================================== */
+/* order.js
+   Full client-side behavior for the Artisan Bakery order page (GitHub Pages compatible).
+   - Handles size -> qty -> confirm flow per card
+   - Builds a cart array and renders cart summary + total
+   - Connects to a backend (Google Apps Script recommended) to fetch orders-per-date counts
+   - Uses flatpickr to render a calendar and disable blackout dates / capacity-limited dates
+   - Validates submit button and posts order to backend
+*/
 
-document.querySelectorAll(".add-to-cart").forEach(button => {
+/* ================== Configuration ================== */
 
-    button.addEventListener("click", function () {
+// Replace this with your deployed Google Apps Script endpoint (or other endpoint).
+// The endpoint should serve:
+//  - GET ?mode=getCounts  => returns existing orders per date (JSON or CSV)
+//  - POST /submit-order   => accepts JSON payload: { name, contact, date, items: [...] }
+const GAS_ENDPOINT = "https://YOUR_APPS_SCRIPT_URL_HERE"; // <- REPLACE ME
 
-        // Prevent re-adding once cart has been triggered
-        if (button.classList.contains("disabled")) return;
+// Business rules
+const DAILY_LIMIT = 9;
+const HOLIDAY_FROM = "2025-12-21";
+const HOLIDAY_TO   = "2026-01-02";
+// Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
+const BLACKOUT_WEEKDAYS = new Set([0,2,4]);
 
-        // Visually lock button after click
-        button.classList.add("disabled");
-        button.innerText = "Added ✓";
-        button.style.opacity = ".4";
-        button.style.cursor = "not-allowed";
+/* ================== State ================== */
 
-        // Access the product card to append qty selector
-        const card = button.closest(".menu-card");
+let cart = []; // array of { item, size, price, qty }
+let existingOrders = {}; // map 'YYYY-MM-DD' -> integer count (fetched from backend)
+let fp = null; // flatpickr instance
 
-        // -------- CREATE THE QUANTITY UI --------
-        const qtyWrapper = document.createElement("div");
-        qtyWrapper.className = "qty-container"; // for styling control
+/* ================== Helpers ================== */
 
-        qtyWrapper.innerHTML = `
-            <label class="qty-label">Quantity:</label>
-            <input type="number" min="1" value="1" class="qty-input" />
-            <button class="confirm-btn">Confirm</button>
-        `;
-
-        card.appendChild(qtyWrapper);
-
-        /* ---------------------------------------------------------
-           CONFIRM BUTTON BEHAVIOR
-           On click:
-           - Reads quantity
-           - Displays confirmation message (placeholder for future cart logic)
-           - Removes selector after confirming to clean UI
-        ----------------------------------------------------------- */
-        qtyWrapper.querySelector(".confirm-btn").addEventListener("click", () => {
-            const qty = qtyWrapper.querySelector(".qty-input").value;
-
-            // Placeholder for future cart integration
-            alert(`Added ${qty} to your order!`);
-
-            // Remove selector once confirmed
-            qtyWrapper.remove();
-        });
-    });
-});
-
-
-
-/* ===========================================================
-   PICKUP DATE LOGIC
-   Uses built-in datePicker element.
-   Features:
-     ✔ Past dates disabled
-     ✔ Sundays greyed-out + blocked from selection
-============================================================= */
-
-const dateInput = document.getElementById("pickupDate");
-
-if (dateInput) {
-
-    // Prevents selecting past dates
-    const today = new Date().toISOString().split("T")[0];
-    dateInput.setAttribute("min", today);
-
-    // Optional rule: Sundays not available for pickup
-    dateInput.addEventListener("input", function () {
-        const selected = new Date(this.value);
-
-        if (selected.getDay() === 0) {
-            alert("We don’t offer Sunday pickups — please select another date.");
-            this.value = ""; // Clears invalid choice
-        }
-    });
+// Format Date -> YYYY-MM-DD
+function fmtDate(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
 }
+
+// Parse backend response into existingOrders map.
+// Accepts either JSON object (date->count) or CSV text lines "YYYY-MM-DD,3"
+function parseOrdersResponse(text){
+  try{
+    const parsed = JSON.parse(text);
+    if(parsed && typeof parsed === 'object'){
+      existingOrders = parsed;
+      return;
+    }
+  }catch(e){
+    // not JSON, try CSV
+  }
+  const map = {};
+  const lines = text.split('\n').map(l=>l.trim()).filter(Boolean);
+  lines.forEach(line=>{
+    const parts = line.split(',');
+    if(parts.length >= 2){
+      const d = parts[0].trim();
+      const c = parseInt(parts[1].trim());
+      if(d && !isNaN(c)) map[d] = c;
+    }
+  });
+  existingOrders = map;
+}
+
+/* ================== Cart UI ================== */
+
+// Render cart items and total
+function renderCart(){
+  const ul = document.getElementById('cartList');
+  const totalEl = document.getElementById('total');
+  ul.innerHTML = '';
+  let total = 0;
+  cart.forEach((it, idx) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<div>${it.item} (${it.size}) x${it.qty}</div><div style="font-weight:600">$${(it.price*it.qty).toFixed(2)}</div>`;
+    ul.appendChild(li);
+    total += it.price * it.qty;
+  });
+  totalEl.innerText = `$${total.toFixed(2)}`;
+  refreshCalendar(); // re-evaluate capacity-based greys
+  validateSubmitState();
+}
+
+/* Utility: compute total qty in cart */
+function cartTotalQty(){
+  return cart.reduce((s,i)=>s + (i.qty || 0), 0);
+}
+
+/* ================== Menu Card Behavior ================== */
+
+// Initialize cards: hide qty, wire up size->show qty, confirm logic
+function initMenuCards(){
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const sizeSel = card.querySelector('.size');
+    const qtySel  = card.querySelector('.qty');
+    const confirmBtn = card.querySelector('.confirm');
+
+    // Hide qty by default (CSS might show it; ensure hidden)
+    if(qtySel){
+      qtySel.style.display = 'none';
+      qtySel.value = '';
+    }
+
+    // Disable confirm initially
+    if(confirmBtn){
+      confirmBtn.classList.add('disabled');
+      confirmBtn.disabled = true;
+    }
+
+    // When user chooses a size -> show qty and enable confirm
+    sizeSel && sizeSel.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if(!val){
+        // Reset
+        if(qtySel) qtySel.style.display = 'none';
+        if(confirmBtn){ confirmBtn.classList.add('disabled'); confirmBtn.disabled = true; }
+        return;
+      }
+      // show qty
+      if(qtySel){
+        qtySel.style.display = 'inline-block';
+        // ensure there's a valid selection by default
+        if(!qtySel.value) qtySel.value = '1';
+      }
+      // enable confirm
+      if(confirmBtn){ confirmBtn.classList.remove('disabled'); confirmBtn.disabled = false; }
+    });
+
+    // Confirm click -> add to cart, disable this button, hide qty
+    confirmBtn && confirmBtn.addEventListener('click', (ev) => {
+      if(confirmBtn.disabled) return;
+      // read item details
+      const itemName = card.dataset.item || (card.querySelector('.title strong') && card.querySelector('.title strong').innerText) || 'Item';
+      const sizeOption = card.querySelector('.size').selectedOptions[0];
+      const sizeText = card.querySelector('.size').value;
+      const price = parseFloat(sizeOption.dataset.price || sizeOption.value || 0);
+      const qty = parseInt(card.querySelector('.qty').value || 1, 10);
+
+      // Add to cart
+      cart.push({
+        item: itemName,
+        size: sizeText,
+        price: price,
+        qty: qty
+      });
+      renderCart();
+
+      // Visually disable the confirm button (faded, unclickable) to signal added
+      confirmBtn.classList.add('disabled');
+      confirmBtn.disabled = true;
+      confirmBtn.innerText = 'Added';
+
+      // hide qty until user changes size again
+      if(qtySel) qtySel.style.display = 'none';
+    });
+
+  });
+}
+
+/* ================== Calendar (flatpickr) ================== */
+
+// Compute min (today+2) and max (today+30)
+function computeMinMax(){
+  const today = new Date();
+  const minDate = new Date(today);
+  minDate.setDate(today.getDate() + 2);
+  const maxDate = new Date(today);
+  maxDate.setDate(today.getDate() + 30);
+  return { minDate, maxDate };
+}
+
+// Check if date is in holiday range
+function inHolidayRange(date){
+  const s = fmtDate(date);
+  return (s >= HOLIDAY_FROM && s <= HOLIDAY_TO);
+}
+
+// Check if a date should be disabled (blackout or capacity limit)
+function isDateDisabled(date){
+  // outside dynamic min/max
+  const { minDate, maxDate } = computeMinMax();
+  if(date < minDate || date > maxDate) return true;
+
+  // blacklist weekdays
+  if(BLACKOUT_WEEKDAYS.has(date.getDay())) return true;
+
+  // holiday range
+  if(inHolidayRange(date)) return true;
+
+  // capacity check: existingOrders[date] + cartTotalQty() > DAILY_LIMIT
+  const ds = fmtDate(date);
+  const existing = existingOrders[ds] || 0;
+  if(existing + cartTotalQty() > DAILY_LIMIT) return true;
+
+  return false;
+}
+
+// Initialize flatpickr instance, with disable function bound to isDateDisabled
+function initCalendar(){
+  const { minDate, maxDate } = computeMinMax();
+  fp = flatpickr("#dateInput", {
+    dateFormat: 'Y-m-d',
+    minDate: minDate,
+    maxDate: maxDate,
+    disable: [
+      function(date){
+        return isDateDisabled(date);
+      }
+    ],
+    onChange: function(selectedDates, dateStr){
+      // validate submit state on date change
+      validateSubmitState();
+    },
+    onMonthChange: function(){
+      // redraw to ensure capacity changes visually update
+      fp.redraw();
+    },
+    onYearChange: function(){ fp.redraw(); }
+  });
+}
+
+/* Force a full redraw of flatpickr (after existingOrders or cart changes) */
+function refreshCalendar(){
+  if(fp){
+    fp.set('disable', [ function(d){ return isDateDisabled(d); } ]);
+    fp.redraw();
+  }
+}
+
+/* ================== Backend Integration (fetch counts + submit) ================== */
+
+/**
+ * Fetch existing orders counts from backend.
+ * Expected return: either JSON object mapping date->count OR CSV "YYYY-MM-DD,count" lines.
+ */
+async function fetchExistingOrders(){
+  existingOrders = {}; // reset
+  if(!GAS_ENDPOINT || GAS_ENDPOINT.includes('YOUR_APPS_SCRIPT_URL_HERE')){
+    // Endpoint not configured — silently continue with empty map (useful for local dev)
+    console.warn('GAS_ENDPOINT not configured — skipping existing orders fetch.');
+    refreshCalendar();
+    return;
+  }
+  try{
+    // the Apps Script should accept mode=getCounts and return JSON or CSV
+    const res = await fetch(`${GAS_ENDPOINT}?mode=getCounts`);
+    if(!res.ok) throw new Error('Network response not ok');
+    const text = await res.text();
+    parseOrdersResponse(text); // global helper (accepts JSON or CSV)
+    refreshCalendar();
+  }catch(err){
+    console.error('Could not fetch existing orders counts:', err);
+    // proceed with empty existingOrders so page remains usable
+    existingOrders = {};
+    refreshCalendar();
+  }
+}
+
+/**
+ * Submit order to backend.
+ * Posts payload: { name, contact, date, items: [ {item, size, price, qty}, ... ] }
+ */
+async function submitOrderToBackend(payload){
+  if(!GAS_ENDPOINT || GAS_ENDPOINT.includes('YOUR_APPS_SCRIPT_URL_HERE')){
+    // No backend configured — simulate success for demo purposes
+    console.warn('GAS_ENDPOINT not configured — submit will simulate success (no server).');
+    return { ok: true, simulated: true };
+  }
+
+  try{
+    const res = await fetch(GAS_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ mode: 'submitOrder', payload })
+    });
+    if(!res.ok){
+      const txt = await res.text();
+      throw new Error(txt || 'Server error');
+    }
+    const json = await res.json();
+    return { ok: true, result: json };
+  }catch(err){
+    console.error('Submit failed:', err);
+    return { ok: false, error: err.message || String(err) };
+  }
+}
+
+/* ================== Submit Validation & Handlers ================== */
+
+function validateSubmitState(){
+  const name = (document.getElementById('fullName')||{value:''}).value.trim();
+  const contact = (document.getElementById('contactField')||{value:''}).value.trim();
+  const dateVal = (document.getElementById('dateInput')||{value:''}).value.trim();
+  const submitBtn = document.getElementById('submitBtn');
+  const hasCart = cart.length > 0;
+
+  if(name && contact && dateVal && hasCart){
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('disabled');
+  } else {
+    submitBtn.disabled = true;
+    submitBtn.classList.add('disabled');
+  }
+}
+
+async function handleSubmit(){
+  const name = document.getElementById('fullName').value.trim();
+  const contact = document.getElementById('contactField').value.trim();
+  const date = document.getElementById('dateInput').value.trim();
+
+  if(!name || !contact || !date || cart.length === 0){
+    alert('Please provide full name, contact, pickup date, and at least one item in the cart.');
+    return;
+  }
+
+  // Build payload
+  const payload = { name, contact, date, items: cart };
+
+  // POST to backend
+  const result = await submitOrderToBackend(payload);
+  const messageBox = document.getElementById('messageBox');
+
+  if(result.ok){
+    // success
+    messageBox.style.display = 'block';
+    messageBox.innerText = 'Order tentatively accepted. Payment required to finalize. Use Venmo or Cash App links below.';
+    // clear cart and re-render
+    cart = [];
+    renderCart();
+    // fetch updated counts (backend should now reflect the new order)
+    await fetchExistingOrders();
+    validateSubmitState();
+  } else {
+    // failure — still show tentative message but warn user
+    messageBox.style.display = 'block';
+    messageBox.innerText = 'Order tentatively accepted (could not reach backend). Please contact us if you do not receive a confirmation. Payment required to finalize.';
+    // do NOT clear cart in this failure path (so user can retry)
+  }
+}
+
+/* ================== Initialization ================== */
+
+function wireUpFormInputs(){
+  // validate on change of text inputs
+  const nameEl = document.getElementById('fullName');
+  const contactEl = document.getElementById('contactField');
+  const dateEl = document.getElementById('dateInput');
+
+  [nameEl, contactEl].forEach(el => el && el.addEventListener('input', validateSubmitState));
+  // date change handled by flatpickr onChange callback also calls validateSubmitState
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn && submitBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.classList.add('disabled');
+    await handleSubmit();
+    submitBtn.disabled = false;
+    validateSubmitState();
+  });
+}
+
+async function boot(){
+  // hide all qty selects initially (in case CSS didn't)
+  document.querySelectorAll('.qty').forEach(s => { s.style.display = 'none'; s.value = ''; });
+
+  // wire size->qty->confirm behaviors
+  initMenuCards();
+
+  // fetch existing orders counts from backend (if configured)
+  await fetchExistingOrders();
+
+  // init calendar with dynamic min/max and disable rules
+  initCalendar();
+
+  // render cart (empty)
+  renderCart();
+
+  // wire up submit & inputs
+  wireUpFormInputs();
+}
+
+// Start
+boot();
+
+/* ================== Exports for debugging ================== */
+window._orderDebug = {
+  cart, existingOrders, fetchExistingOrders, refreshCalendar
+};
