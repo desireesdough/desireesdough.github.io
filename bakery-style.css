@@ -1,11 +1,16 @@
-:root{ --accent:#c1865c; --accent-dark:#a46e4a; --bg:#fdf6f0; --card:#fff6f0; --text:#4a3f36; }
+:root {
+  --accent: #d4a373;
+  --accent-hover: #b37b54;
+  --bg: #fdfbf7;
+  --text: #3a3a3a;
+}
 
 body {
   margin: 0;
-  font-family:Georgia, 'Times new Roman', serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  height: 100%;
+  line-height: 1.6;
 }
 
 /* Header */
