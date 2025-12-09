@@ -13,7 +13,7 @@
 // The endpoint should serve:
 //  - GET ?mode=getCounts  => returns existing orders per date (JSON or CSV)
 //  - POST /submit-order   => accepts JSON payload: { name, contact, date, items: [...] }
-const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwbpdITJdlHzaW8b5XU_z3QSD95u73SHCJwIiUG1x2zty7Z3vjbe-0ihI_ICy-R68FM/exec"; // <- REPLACE ME
+const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyJyjd4sC59eMDmRKBAl3oUyOzhv7WhUre9m8vN-tVEbd_zoVQDip445arG6fduaQvIWA/exec"; // <- REPLACE ME
 
 // Business rules
 const DAILY_LIMIT = 9;
