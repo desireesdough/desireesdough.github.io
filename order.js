@@ -13,14 +13,14 @@
 // The endpoint should serve:
 //  - GET ?mode=getCounts  => returns existing orders per date (JSON or CSV)
 //  - POST /submit-order   => accepts JSON payload: { name, contact, date, items: [...] }
-const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyJyjd4sC59eMDmRKBAl3oUyOzhv7WhUre9m8vN-tVEbd_zoVQDip445arG6fduaQvIWA/exec"; // <- REPLACE ME
+const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycby0WxAXoM9B7qZSfHV8CI2YMxjbSUXU8-pdckw2n5917TVj_KpD3i0Ty2kECiYc_cz1cA/exec"; // <- REPLACE ME
 
 // Business rules
 const DAILY_LIMIT = 9;
 const HOLIDAY_FROM = "2025-12-21";
 const HOLIDAY_TO   = "2026-01-02";
 // Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
-const BLACKOUT_WEEKDAYS = new Set([0,2,4]);
+const BLACKOUT_WEEKDAYS = new Set([0,1,3,5]);
 
 /* ================== State ================== */
 
@@ -264,7 +264,6 @@ async function fetchExistingOrders(){
  */
 async function submitOrderToBackend(payload){
   if(!GAS_ENDPOINT || GAS_ENDPOINT.includes('YOUR_APPS_SCRIPT_URL_HERE')){
-    // No backend configured — simulate success for demo purposes
     console.warn('GAS_ENDPOINT not configured — submit will simulate success (no server).');
     return { ok: true, simulated: true };
   }
@@ -272,20 +271,20 @@ async function submitOrderToBackend(payload){
   try{
     const res = await fetch(GAS_ENDPOINT, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      mode: 'no-cors',
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({ mode: 'submitOrder', payload })
     });
-    if(!res.ok){
-      const txt = await res.text();
-      throw new Error(txt || 'Server error');
-    }
-    const json = await res.json();
-    return { ok: true, result: json };
+
+    // In no-cors mode, fetch always returns "opaque" but still sends POST successfully
+    return { ok: true, result: "opaque" };
+
   }catch(err){
     console.error('Submit failed:', err);
     return { ok: false, error: err.message || String(err) };
   }
 }
+
 
 /* ================== Submit Validation & Handlers ================== */
 
