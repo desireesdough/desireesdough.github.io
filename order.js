@@ -262,7 +262,7 @@ async function submitOrderToBackend(payload){
   try{
     const res = await fetch(GAS_ENDPOINT, {
       method: 'POST',
-      body: payload)
+      body: payload
     });
 
     // In no-cors mode, fetch always returns "opaque" but still sends POST successfully
