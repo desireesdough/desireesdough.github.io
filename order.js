@@ -237,15 +237,11 @@ function refreshCalendar(){
  */
 async function fetchExistingOrders(){
   existingOrders = {}; // reset
-  if(!GAS_ENDPOINT || GAS_ENDPOINT.includes('YOUR_APPS_SCRIPT_URL_HERE')){
-    // Endpoint not configured — silently continue with empty map (useful for local dev)
-    console.warn('GAS_ENDPOINT not configured — skipping existing orders fetch.');
-    refreshCalendar();
-    return;
-  }
   try{
     // the Apps Script should accept mode=getCounts and return JSON or CSV
-    const res = await fetch(`${GAS_ENDPOINT}?mode=getCounts`);
+    let formData = new FormData(); 
+    formData.append('Timestamp', '');
+    const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData}).then(r=>r.json()).then(r=>console.log(r));
     if(!res.ok) throw new Error('Network response not ok');
     const text = await res.text();
     parseOrdersResponse(text); // global helper (accepts JSON or CSV)
@@ -263,17 +259,10 @@ async function fetchExistingOrders(){
  * Posts payload: { name, contact, date, items: [ {item, size, price, qty}, ... ] }
  */
 async function submitOrderToBackend(payload){
-  if(!GAS_ENDPOINT || GAS_ENDPOINT.includes('YOUR_APPS_SCRIPT_URL_HERE')){
-    console.warn('GAS_ENDPOINT not configured — submit will simulate success (no server).');
-    return { ok: true, simulated: true };
-  }
-
   try{
     const res = await fetch(GAS_ENDPOINT, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ mode: 'submitOrder', payload })
+      body: payload)
     });
 
     // In no-cors mode, fetch always returns "opaque" but still sends POST successfully
@@ -308,6 +297,7 @@ async function handleSubmit(){
   const name = document.getElementById('fullName').value.trim();
   const contact = document.getElementById('contactField').value.trim();
   const date = document.getElementById('dateInput').value.trim();
+  const ts = new Date()
 
   if(!name || !contact || !date || cart.length === 0){
     alert('Please provide full name, contact, pickup date, and at least one item in the cart.');
@@ -315,7 +305,13 @@ async function handleSubmit(){
   }
 
   // Build payload
-  const payload = { name, contact, date, items: cart };
+  let formData = new FormData(); 
+   formData.append('Timestamp', ts);
+   formData.append('Name', name);
+   formData.append('Contact', contact);
+   formData.append('Pickup', date);
+   formData.append('Cart', cart);
+  const payload = formData;
 
   // POST to backend
   const result = await submitOrderToBackend(payload);
