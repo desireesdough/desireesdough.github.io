@@ -242,7 +242,6 @@ async function fetchExistingOrders(){
     let formData = new FormData(); 
     formData.append('Timestamp', '');
     const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData}).then(r=>r.json()).then(r=>console.log(r));
-    if(!res.ok) throw new Error('Network response not ok');
     const text = await res.text();
     parseOrdersResponse(text); // global helper (accepts JSON or CSV)
     refreshCalendar();
