@@ -116,10 +116,10 @@ function initMenuCards(){
 
       // Add to cart
       cart.push({
-        item: itemName,
-        size: sizeText,
-        price: price,
-        qty: qty
+        Item: itemName,
+        Size: sizeText,
+        Price: qty * price,
+        Quantity: qty
       });
       renderCart();
 
