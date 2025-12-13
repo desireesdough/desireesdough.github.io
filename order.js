@@ -49,9 +49,9 @@ function renderCart(){
   let total = 0;
   cart.forEach((it, idx) => {
     const li = document.createElement('li');
-    li.innerHTML = `<div>${it.item} (${it.size}) x${it.qty}</div><div style="font-weight:600">$${(it.price*it.qty).toFixed(2)}</div>`;
+    li.innerHTML = `<div>${it.Item} (${it.Size}) x${it.Quantity}</div><div style="font-weight:600">$${(it.Price).toFixed(2)}</div>`;
     ul.appendChild(li);
-    total += it.price * it.qty;
+    total += it.Price;
   });
   totalEl.innerText = `$${total.toFixed(2)}`;
   refreshCalendar(); // re-evaluate capacity-based greys
