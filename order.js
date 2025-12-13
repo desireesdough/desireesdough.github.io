@@ -217,7 +217,7 @@ async function fetchExistingOrders(){
     // the Apps Script should accept mode=getCounts and return JSON or CSV
     let formData = new FormData(); 
     formData.append('Timestamp', '');
-    const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData}));
+    const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData});
     const dates = await res.json();
     console.log(dates)
     existingOrders = dates
