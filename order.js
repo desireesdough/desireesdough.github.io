@@ -49,9 +49,9 @@ function renderCart(){
   let total = 0;
   cart.forEach((it, idx) => {
     const li = document.createElement('li');
-    li.innerHTML = `<div>${it.Item} (${it.Size}) x${it.Quantity}</div><div style="font-weight:600">$${(it.Price).toFixed(2)}</div>`;
+    li.innerHTML = `<div>${it.Item} (${it.Size}) x${it.Quantity}</div><div style="font-weight:600">$${(it.Total).toFixed(2)}</div>`;
     ul.appendChild(li);
-    total += it.Price;
+    total += it.Total;
   });
   totalEl.innerText = `$${total.toFixed(2)}`;
   refreshCalendar(); // re-evaluate capacity-based greys
@@ -118,7 +118,7 @@ function initMenuCards(){
       cart.push({
         Item: itemName,
         Size: sizeText,
-        Price: qty * price,
+        Total: qty * price,
         Quantity: qty
       });
       renderCart();
