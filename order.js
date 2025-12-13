@@ -286,7 +286,7 @@ async function handleSubmit(){
    formData.append('Name', name);
    formData.append('Contact', contact);
    formData.append('Pickup', date);
-   formData.append('Cart', cart);
+   formData.append('Cart', JSON.stringify(cart));
   const payload = formData;
 
   // POST to backend
