@@ -38,30 +38,6 @@ function fmtDate(d){
   return `${y}-${m}-${day}`;
 }
 
-// Parse backend response into existingOrders map.
-// Accepts either JSON object (date->count) or CSV text lines "YYYY-MM-DD,3"
-function parseOrdersResponse(text){
-  try{
-    const parsed = JSON.parse(text);
-    if(parsed && typeof parsed === 'object'){
-      existingOrders = parsed;
-      return;
-    }
-  }catch(e){
-    // not JSON, try CSV
-  }
-  const map = {};
-  const lines = text.split('\n').map(l=>l.trim()).filter(Boolean);
-  lines.forEach(line=>{
-    const parts = line.split(',');
-    if(parts.length >= 2){
-      const d = parts[0].trim();
-      const c = parseInt(parts[1].trim());
-      if(d && !isNaN(c)) map[d] = c;
-    }
-  });
-  existingOrders = map;
-}
 
 /* ================== Cart UI ================== */
 
@@ -241,9 +217,10 @@ async function fetchExistingOrders(){
     // the Apps Script should accept mode=getCounts and return JSON or CSV
     let formData = new FormData(); 
     formData.append('Timestamp', '');
-    const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData}).then(r=>r.json()).then(r=>console.log(r));
-    const text = await res.text();
-    parseOrdersResponse(text); // global helper (accepts JSON or CSV)
+    const res = await fetch(GAS_ENDPOINT, {method:'POST', body: formData}));
+    const dates = await res.json();
+    console.log(dates)
+    existingOrders = dates
     refreshCalendar();
   }catch(err){
     console.error('Could not fetch existing orders counts:', err);
