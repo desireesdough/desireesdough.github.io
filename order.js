@@ -122,6 +122,7 @@ function initMenuCards(){
         Quantity: qty
       });
       renderCart();
+      refreshCalendar();
 
       // Visually disable the confirm button (faded, unclickable) to signal added
       confirmBtn.classList.add('disabled');
