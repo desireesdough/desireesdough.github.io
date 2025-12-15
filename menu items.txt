@@ -1,0 +1,335 @@
+
+        <!-- PLAIN SOURDOUGH -->
+        <article class="card" data-item="Plain Sourdough">
+          <div class="title"><strong>Plain Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="6">Regular — $6</option>
+              <option value="regular" data-price="7">Regular (pre-sliced) — $7</option>
+              <option value="mini" data-price="4">Mini — $4</option>
+              <option value="mini" data-price="5">Mini (pre-sliced) — $5</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+              <option value="8">8</option><option value="9">9</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- FLAVORED LOAVES -->
+        <!-- CHOCOLATE CHIP SOURDOUGH -->
+        <article class="card" data-item="Chocolate Chip Sourdough">
+          <div class="title"><strong>Chocolate Chip Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="8">Regular — $8</option>
+              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="mini" data-price="6">Mini — $6</option>
+              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- CINNAMON SUGAR SOURDOUGH -->
+        <article class="card" data-item="Cinnamon Sugar Sourdough">
+          <div class="title"><strong>Cinnamon Sugar Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="8">Regular — $8</option>
+              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="mini" data-price="6">Mini — $6</option>
+              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- JALAPENO CHEDDAR SOURDOUGH -->
+        <article class="card" data-item="Jalapeno Cheddar Sourdough">
+          <div class="title"><strong>Jalapeno Cheddar Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="8">Regular — $8</option>
+              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="mini" data-price="6">Mini — $6</option>
+              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- SPECIALTY FLAVOR LOAVES -->
+        <!-- STRAWBERRY WHITE CHOCOLATE SOURDOUGH -->
+        <article class="card" data-item="Strawberry White Chocolate Sourdough">
+          <div class="title"><strong>Strawberry White Chocolate Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- SWEET FUNFETTI SOURDOUGH -->
+        <article class="card" data-item="Sweet Funfetti Sourdough">
+          <div class="title"><strong>Sweet Funfetti Loaf</strong></div>
+          <img src="images/FunfettiLoaf.jpg" class="SmallImage" alt="FunfettiLoaf">
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- MINT CHOCOLATE CHIP SOURDOUGH -->
+        <article class="card" data-item="Mint Chocolate Chip Sourdough">
+          <div class="title"><strong>Mint Chocolate Chip Loaf</strong></div>
+          <img src="images/MintChocLoaf.jpg" class="SmallImage" alt="MintChocLoaf">
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- PUMPKIN CHIP SOURDOUGH -->
+        <article class="card" data-item="Pumpkin Chip Sourdough">
+          <div class="title"><strong>Pumpkin Chip Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- ITALIAN HERB AND CHEESE SOURDOUGH -->
+        <article class="card" data-item="Italian Herb and Cheese Sourdough">
+          <div class="title"><strong>Italian Herb and Cheese Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- ROSEMARY GARLIC SOURDOUGH -->
+        <article class="card" data-item="Rosemary Garlic Sourdough">
+          <div class="title"><strong>Rosemary Garlic Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- CARAMEL APPLE SOURDOUGH -->
+        <article class="card" data-item="Caramel Apple Sourdough">
+          <div class="title"><strong>Caramel Apple Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- CRANBERRY PECAN SOURDOUGH -->
+        <article class="card" data-item="Cranberry Pecan Sourdough">
+          <div class="title"><strong>Cranberry Pecan Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- BUTTERED CROISSANT SOURDOUGH -->
+        <article class="card" data-item="Buttered Croissant Sourdough">
+          <div class="title"><strong>Buttered Croissant Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="mini" data-price="8">Mini — $8</option>
+              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- OTHER ITEMS -->
+        <!-- BREAD BOWLS -->
+        <article class="card" data-item="Bread Bowls">
+          <div class="title"><strong>Pack of Sourdough Bread Bowls (3)</strong></div>
+          <img src="images/BreadBowls.jpg" class="SmallImage" alt="BreadBowls">
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="10">Regular — $10</option>
+              <option value="regular" data-price="12">Regular (pre-cut, bag of filling included) — $12</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- BROWN BUTTER CHOCOLATE CHIP COOKIES -->
+        <article class="card" data-item="Chocolate Chip Cookies">
+          <div class="title"><strong>Brown Butter Sourdough Chocolate Chip Cookies</strong></div>
+          <img src="images/ChocChipCookies.jpg" class="SmallImage" alt="ChocChipCookies">
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="7">1 Dozen — $7</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- SANDWICH LOAF -->
+        <article class="card" data-item="Sandwich Loaf">
+          <div class="title"><strong>Sandwich Loaf</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="7">Regular — $7</option>
+              <option value="regular" data-price="8">Regular (pre-sliced) — $8</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- SOURDOUGH CRACKERS -->
+        <article class="card" data-item="Sourdough Crackers">
+          <div class="title"><strong>Sourdough Crackers</strong></div>
+          <!-- image -->
+          <div class="controls">
+            <select class="size">
+              <option value="">Size…</option>
+              <option value="regular" data-price="3">Everything Bagel (~50) — $3</option>
+              <option value="regular" data-price="3">Chive & Sea Salt (~50) — $3</option>
+            </select>
+            <select class="qty">
+              <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option>
+            </select>
+            <button class="btn confirm disabled" disabled>Add to Cart</button>
+          </div>
+        </article>
