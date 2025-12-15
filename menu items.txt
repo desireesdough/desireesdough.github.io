@@ -7,9 +7,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="6">Regular — $6</option>
-              <option value="regular" data-price="7">Regular (pre-sliced) — $7</option>
+              <option value="regular (pre-sliced)" data-price="7">Regular (pre-sliced) — $7</option>
               <option value="mini" data-price="4">Mini — $4</option>
-              <option value="mini" data-price="5">Mini (pre-sliced) — $5</option>
+              <option value="mini (pre-sliced)" data-price="5">Mini (pre-sliced) — $5</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -29,9 +29,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="8">Regular — $8</option>
-              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="regular (pre-sliced)" data-price="9">Regular (pre-sliced) — $9</option>
               <option value="mini" data-price="6">Mini — $6</option>
-              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+              <option value="mini (pre-sliced)" data-price="7">Mini (pre-sliced) — $6</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -49,9 +49,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="8">Regular — $8</option>
-              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="regular (pre-sliced)" data-price="9">Regular (pre-sliced) — $9</option>
               <option value="mini" data-price="6">Mini — $6</option>
-              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+              <option value="mini (pre-sliced)" data-price="7">Mini (pre-sliced) — $6</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -69,9 +69,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="8">Regular — $8</option>
-              <option value="regular" data-price="9">Regular (pre-sliced) — $9</option>
+              <option value="regular (pre-sliced)" data-price="9">Regular (pre-sliced) — $9</option>
               <option value="mini" data-price="6">Mini — $6</option>
-              <option value="mini" data-price="7">Mini (pre-sliced) — $6</option>
+              <option value="mini (pre-sliced)" data-price="7">Mini (pre-sliced) — $6</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -90,9 +90,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -110,9 +110,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -130,9 +130,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -150,9 +150,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -170,9 +170,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -190,9 +190,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -210,9 +210,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -230,9 +230,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -250,9 +250,9 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="11">Regular (pre-sliced) — $11</option>
+              <option value="regular (pre-sliced)" data-price="11">Regular (pre-sliced) — $11</option>
               <option value="mini" data-price="8">Mini — $8</option>
-              <option value="mini" data-price="9">Mini (pre-sliced) — $9</option>
+              <option value="mini (pre-sliced)" data-price="9">Mini (pre-sliced) — $9</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -271,7 +271,7 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="10">Regular — $10</option>
-              <option value="regular" data-price="12">Regular (pre-cut, bag of filling included) — $12</option>
+              <option value="regular (pre-cut)" data-price="12">Regular (pre-cut, bag of filling included) — $12</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -288,7 +288,7 @@
           <div class="controls">
             <select class="size">
               <option value="">Size…</option>
-              <option value="regular" data-price="7">1 Dozen — $7</option>
+              <option value="1 Dozen" data-price="7">1 Dozen — $7</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -306,7 +306,7 @@
             <select class="size">
               <option value="">Size…</option>
               <option value="regular" data-price="7">Regular — $7</option>
-              <option value="regular" data-price="8">Regular (pre-sliced) — $8</option>
+              <option value="regular (pre-sliced)" data-price="8">Regular (pre-sliced) — $8</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
@@ -323,8 +323,8 @@
           <div class="controls">
             <select class="size">
               <option value="">Size…</option>
-              <option value="regular" data-price="3">Everything Bagel (~50) — $3</option>
-              <option value="regular" data-price="3">Chive & Sea Salt (~50) — $3</option>
+              <option value="Everything Bagel" data-price="3">Everything Bagel (~50) — $3</option>
+              <option value="Chive & Sea Salt" data-price="3">Chive & Sea Salt (~50) — $3</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
