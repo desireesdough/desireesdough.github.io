@@ -184,6 +184,46 @@ input:focus {
     background: #fff3dc;
 }
 
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn,
+.remove-btn {
+  background: #eee;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.qty-btn:hover,
+.remove-btn:hover {
+  background: #ddd;
+}
+
+.remove-btn {
+  color: #900;
+  font-weight: bold;
+}
+
+.qty {
+  min-width: 20px;
+  text-align: center;
+}
+
+
 /* Submit locked until info entered */
 .submit-btn {
     margin-top: 18px;
@@ -195,3 +235,5 @@ input:focus {
     font-size: 1.1rem;
     opacity: .5;
     pointer-events: none;
+
+
