@@ -1,7 +1,7 @@
 
         <!-- PLAIN SOURDOUGH -->
-        <article class="card" data-item="Plain Sourdough">
-          <div class="title"><strong>Plain Loaf</strong></div>
+        <article class="card" data-item="Plain Artisan Loaf">
+          <div class="title"><strong>Plain Artisan Loaf</strong></div>
           <!-- image -->
           <div class="controls">
             <select class="size">
@@ -22,7 +22,7 @@
 
         <!-- FLAVORED LOAVES -->
         <!-- CHOCOLATE CHIP SOURDOUGH -->
-        <article class="card" data-item="Chocolate Chip Sourdough">
+        <article class="card" data-item="Chocolate Chip Loaf">
           <div class="title"><strong>Chocolate Chip Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -42,7 +42,7 @@
         </article>
 
         <!-- CINNAMON SUGAR SOURDOUGH -->
-        <article class="card" data-item="Cinnamon Sugar Sourdough">
+        <article class="card" data-item="Cinnamon Sugar Loaf">
           <div class="title"><strong>Cinnamon Sugar Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -62,7 +62,7 @@
         </article>
 
         <!-- JALAPENO CHEDDAR SOURDOUGH -->
-        <article class="card" data-item="Jalapeno Cheddar Sourdough">
+        <article class="card" data-item="Jalapeno Cheddar Loaf">
           <div class="title"><strong>Jalapeno Cheddar Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -83,7 +83,7 @@
 
         <!-- SPECIALTY FLAVOR LOAVES -->
         <!-- STRAWBERRY WHITE CHOCOLATE SOURDOUGH -->
-        <article class="card" data-item="Strawberry White Chocolate Sourdough">
+        <article class="card" data-item="Strawberry White Chocolate Loaf">
           <div class="title"><strong>Strawberry White Chocolate Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -103,7 +103,7 @@
         </article>
 
         <!-- SWEET FUNFETTI SOURDOUGH -->
-        <article class="card" data-item="Sweet Funfetti Sourdough">
+        <article class="card" data-item="Sweet Funfetti Loaf">
           <div class="title"><strong>Sweet Funfetti Loaf</strong></div>
           <img src="images/FunfettiLoaf.jpg" class="SmallImage" alt="FunfettiLoaf">
           <div class="controls">
@@ -123,7 +123,7 @@
         </article>
 
         <!-- MINT CHOCOLATE CHIP SOURDOUGH -->
-        <article class="card" data-item="Mint Chocolate Chip Sourdough">
+        <article class="card" data-item="Mint Chocolate Chip Loaf">
           <div class="title"><strong>Mint Chocolate Chip Loaf</strong></div>
           <img src="images/MintChocLoaf.jpg" class="SmallImage" alt="MintChocLoaf">
           <div class="controls">
@@ -143,7 +143,7 @@
         </article>
 
         <!-- PUMPKIN CHIP SOURDOUGH -->
-        <article class="card" data-item="Pumpkin Chip Sourdough">
+        <article class="card" data-item="Pumpkin Chip Loaf">
           <div class="title"><strong>Pumpkin Chip Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -163,7 +163,7 @@
         </article>
 
         <!-- ITALIAN HERB AND CHEESE SOURDOUGH -->
-        <article class="card" data-item="Italian Herb and Cheese Sourdough">
+        <article class="card" data-item="Italian Herb and Cheese Loaf">
           <div class="title"><strong>Italian Herb and Cheese Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -183,7 +183,7 @@
         </article>
 
         <!-- ROSEMARY GARLIC SOURDOUGH -->
-        <article class="card" data-item="Rosemary Garlic Sourdough">
+        <article class="card" data-item="Rosemary Garlic Loaf">
           <div class="title"><strong>Rosemary Garlic Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -203,7 +203,7 @@
         </article>
 
         <!-- CARAMEL APPLE SOURDOUGH -->
-        <article class="card" data-item="Caramel Apple Sourdough">
+        <article class="card" data-item="Caramel Apple Loaf">
           <div class="title"><strong>Caramel Apple Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -223,7 +223,7 @@
         </article>
 
         <!-- CRANBERRY PECAN SOURDOUGH -->
-        <article class="card" data-item="Cranberry Pecan Sourdough">
+        <article class="card" data-item="Cranberry Pecan Loaf">
           <div class="title"><strong>Cranberry Pecan Loaf</strong></div>
           <!-- image -->
           <div class="controls">
@@ -243,7 +243,7 @@
         </article>
 
         <!-- BUTTERED CROISSANT SOURDOUGH -->
-        <article class="card" data-item="Buttered Croissant Sourdough">
+        <article class="card" data-item="Buttered Croissant Loaf">
           <div class="title"><strong>Buttered Croissant Loaf</strong></div>
           <!-- image -->
           <div class="controls">
