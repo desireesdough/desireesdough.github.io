@@ -114,13 +114,23 @@ function initMenuCards(){
       const price = parseFloat(sizeOption.dataset.price || sizeOption.value || 0);
       const qty = parseInt(card.querySelector('.qty').value || 1, 10);
 
-      // Add to cart
-      cart.push({
-        Item: itemName,
-        Size: sizeText,
-        Total: qty * price,
-        Quantity: qty
+      // Add to cart - without dupes
+      cart.forEach((it, idx) => {
+        if(it.Item == itemName && it.Size == sizeOption) {
+           let newTotal = qty * price;
+           it.Quantity += qty;
+           it.Total += newTotal;
+           qty = 0;
+        }
       });
+      if(qty > 0) {    
+         cart.push({
+           Item: itemName,
+           Size: sizeText,
+           Total: qty * price,
+           Quantity: qty
+         });
+      }
       renderCart();
       refreshCalendar();
 
