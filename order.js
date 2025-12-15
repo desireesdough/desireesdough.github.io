@@ -46,21 +46,80 @@ function renderCart(){
   const ul = document.getElementById('cartList');
   const totalEl = document.getElementById('total');
   ul.innerHTML = '';
+
   let total = 0;
+
   cart.forEach((it, idx) => {
     const li = document.createElement('li');
-    li.innerHTML = `<div>${it.Item} (${it.Size}) x${it.Quantity}</div><div style="font-weight:600">$${(it.Total).toFixed(2)}</div>`;
+    li.className = 'cart-item';
+
+    li.innerHTML = `
+      <div class="cart-left">
+        <strong>${it.Item}</strong> (${it.Size})
+      </div>
+
+      <div class="cart-controls">
+        <button class="qty-btn dec" data-idx="${idx}">−</button>
+        <span class="qty">${it.Quantity}</span>
+        <button class="qty-btn inc" data-idx="${idx}">+</button>
+      </div>
+
+      <div class="cart-price">
+        $${it.Total.toFixed(2)}
+      </div>
+
+      <button class="remove-btn" data-idx="${idx}">✕</button>
+    `;
+
     ul.appendChild(li);
     total += it.Total;
   });
+
   totalEl.innerText = `$${total.toFixed(2)}`;
-  refreshCalendar(); // re-evaluate capacity-based greys
+
+  refreshCalendar();
   validateSubmitState();
 }
+// make it possible to modify the cart
+function wireCartControls(){
+  const cartEl = document.getElementById('cartList');
+
+  cartEl.addEventListener('click', (e) => {
+    const idx = e.target.dataset.idx;
+    if (idx === undefined) return;
+
+    const item = cart[idx];
+    if (!item) return;
+
+    // Increment
+    if (e.target.classList.contains('inc')) {
+      item.Quantity += 1;
+      item.Total += item.UnitPrice;
+    }
+
+    // Decrement
+    if (e.target.classList.contains('dec')) {
+      item.Quantity -= 1;
+      item.Total -= item.UnitPrice;
+
+      if (item.Quantity <= 0) {
+        cart.splice(idx, 1);
+      }
+    }
+
+    // Remove
+    if (e.target.classList.contains('remove-btn')) {
+      cart.splice(idx, 1);
+    }
+
+    renderCart();
+  });
+}
+
 
 /* Utility: compute total qty in cart */
 function cartTotalQty(){
-  return cart.reduce((s,i)=>s + (i.qty || 0), 0);
+  return cart.reduce((s,i)=>s + (i.Quantity || 0), 0);
 }
 
 /* ================== Menu Card Behavior ================== */
@@ -115,22 +174,23 @@ function initMenuCards(){
       let qty = parseInt(card.querySelector('.qty').value || 1, 10);
 
       // Add to cart - without dupes
-      cart.forEach((it, idx) => {
-        if(it.Item == itemName && it.Size == sizeOption) {
-           let newTotal = qty * price;
-           cart[idx].Quantity += qty;
-           cart[idx].Total += newTotal;
-           qty = 0;
-        }
-      });
-      if(qty > 0) {    
-         cart.push({
-           Item: itemName,
-           Size: sizeText,
-           Total: qty * price,
-           Quantity: qty
-         });
+      let existing = cart.find(it =>
+        it.Item === itemName && it.Size === sizeText
+      );
+      
+      if (existing) {
+        existing.Quantity += qty;
+        existing.Total += qty * price;
+      } else {
+        cart.push({
+          Item: itemName,
+          Size: sizeText,
+          Quantity: qty,
+          UnitPrice: price,
+          Total: qty * price
+        });
       }
+
       renderCart();
       refreshCalendar();
 
@@ -361,6 +421,7 @@ async function boot(){
   renderCart();
 
   // wire up submit & inputs
+  wireCartControls();
   wireUpFormInputs();
 }
 
