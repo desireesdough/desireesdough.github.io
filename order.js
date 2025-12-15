@@ -112,14 +112,14 @@ function initMenuCards(){
       const sizeOption = card.querySelector('.size').selectedOptions[0];
       const sizeText = card.querySelector('.size').value;
       const price = parseFloat(sizeOption.dataset.price || sizeOption.value || 0);
-      const qty = parseInt(card.querySelector('.qty').value || 1, 10);
+      let qty = parseInt(card.querySelector('.qty').value || 1, 10);
 
       // Add to cart - without dupes
       cart.forEach((it, idx) => {
         if(it.Item == itemName && it.Size == sizeOption) {
            let newTotal = qty * price;
-           it.Quantity += qty;
-           it.Total += newTotal;
+           cart[idx].Quantity += qty;
+           cart[idx].Total += newTotal;
            qty = 0;
         }
       });
