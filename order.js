@@ -60,7 +60,7 @@ function renderCart(){
 
       <div class="cart-controls">
         <button class="qty-btn dec" data-idx="${idx}">−</button>
-        <span class="qty">${it.Quantity}</span>
+        <div class="qty">${it.Quantity}</div>
         <button class="qty-btn inc" data-idx="${idx}">+</button>
       </div>
 
@@ -197,7 +197,6 @@ function initMenuCards(){
       // Visually disable the confirm button (faded, unclickable) to signal added
       confirmBtn.classList.add('disabled');
       confirmBtn.disabled = true;
-      confirmBtn.innerText = 'Added';
 
       // hide qty until user changes size again
       if(qtySel) qtySel.style.display = 'none';
