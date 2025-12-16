@@ -82,7 +82,7 @@ function renderCart(){
    
        <div class="cart-controls">
          <button class="qty-btn" onclick="decrementQty(${idx})">−</button>
-         <span class="qty">${it.Quantity}</span>
+         <span class="cart-qty">${it.Quantity}</span>
          <button class="qty-btn" onclick="incrementQty(${idx})">+</button>
        </div>
    
