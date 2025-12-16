@@ -81,9 +81,9 @@ function renderCart(){
         </div>
       
         <div class="cart-controls">
-          <button class="qty-btn dec" data-idx="${idx}">−</button>
+          <button class="qty-btn dec" onclick="decrementQty(${idx})">−</button>
           <span class="cart-qty">${it.Quantity}</span>
-          <button class="qty-btn inc" data-idx="${idx}">+</button>
+          <button class="qty-btn inc" onclick="incrementQty(${idx})">+</button>
         </div>
       
         <div class="cart-price">$${it.Total.toFixed(2)}</div>
