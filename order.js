@@ -74,22 +74,23 @@ function renderCart(){
     li.className = 'cart-item';
 
     li.innerHTML = `
-     <div class="cart-item">
-       <div class="cart-left">
-         <strong>${it.Item}</strong><br>
-         <span>${it.Size}</span>
-       </div>
-   
-       <div class="cart-controls">
+     <li class="cart-item">
+        <div class="cart-left">
+          <strong>${it.Item}</strong><br>
+          <span>${it.Size}</span>
+        </div>
+      
+        <div class="cart-controls">
           <button class="qty-btn dec" data-idx="${idx}">−</button>
           <span class="cart-qty">${it.Quantity}</span>
           <button class="qty-btn inc" data-idx="${idx}">+</button>
         </div>
-   
-       <div class="cart-price">$${it.Total.toFixed(2)}</div>
-   
-       <button class="remove-btn" onclick="removeItem(${idx})">×</button>
-     </div>
+      
+        <div class="cart-price">$${it.Total.toFixed(2)}</div>
+      
+        <button class="remove-btn" onclick="removeItem(${idx})">×</button>
+      </li>
+
 `;
 
     ul.appendChild(li);
