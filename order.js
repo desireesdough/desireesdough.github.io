@@ -197,7 +197,7 @@ function initMenuCards(){
 function computeMinMax(){
   const today = new Date();
   const minDate = new Date(today);
-  minDate.setDate(today.getDate() + 2);
+  minDate.setDate(today.getDate() + 3);
   const maxDate = new Date(today);
   maxDate.setDate(today.getDate() + 30);
   return { minDate, maxDate };
