@@ -41,12 +41,32 @@ function fmtDate(d){
 
 /* ================== Cart UI ================== */
 
+function incrementQty(i) {
+  cart[i].Quantity += 1;
+  cart[i].Total = cart[i].Quantity * cart[i].UnitPrice;
+  renderCart();
+}
+
+function decrementQty(i) {
+  if (cart[i].Quantity > 1) {
+    cart[i].Quantity -= 1;
+    cart[i].Total = cart[i].Quantity * cart[i].UnitPrice;
+  } else {
+    cart.splice(i, 1);
+  }
+  renderCart();
+}
+
+function removeItem(i) {
+  cart.splice(i, 1);
+  renderCart();
+}
+
 // Render cart items and total
 function renderCart(){
   const ul = document.getElementById('cartList');
   const totalEl = document.getElementById('total');
   ul.innerHTML = '';
-
   let total = 0;
 
   cart.forEach((it, idx) => {
@@ -55,20 +75,18 @@ function renderCart(){
 
     li.innerHTML = `
       <div class="cart-left">
-        <strong>${it.Item}</strong> (${it.Size})
+        ${it.Item} <span style="opacity:.7">(${it.Size})</span>
       </div>
 
       <div class="cart-controls">
-        <button class="qty-btn dec" data-idx="${idx}">−</button>
+        <button class="qty-btn" onclick="decrementQty(${idx})">−</button>
         <div class="qty">${it.Quantity}</div>
-        <button class="qty-btn inc" data-idx="${idx}">+</button>
+        <button class="qty-btn" onclick="incrementQty(${idx})">+</button>
       </div>
 
-      <div class="cart-price">
-        $${it.Total.toFixed(2)}
-      </div>
+      <div class="cart-price">$${it.Total.toFixed(2)}</div>
 
-      <button class="remove-btn" data-idx="${idx}">✕</button>
+      <button class="remove-btn" onclick="removeItem(${idx})">×</button>
     `;
 
     ul.appendChild(li);
@@ -76,44 +94,8 @@ function renderCart(){
   });
 
   totalEl.innerText = `$${total.toFixed(2)}`;
-
   refreshCalendar();
   validateSubmitState();
-}
-// make it possible to modify the cart
-function wireCartControls(){
-  const cartEl = document.getElementById('cartList');
-
-  cartEl.addEventListener('click', (e) => {
-    const idx = e.target.dataset.idx;
-    if (idx === undefined) return;
-
-    const item = cart[idx];
-    if (!item) return;
-
-    // Increment
-    if (e.target.classList.contains('inc')) {
-      item.Quantity += 1;
-      item.Total += item.UnitPrice;
-    }
-
-    // Decrement
-    if (e.target.classList.contains('dec')) {
-      item.Quantity -= 1;
-      item.Total -= item.UnitPrice;
-
-      if (item.Quantity <= 0) {
-        cart.splice(idx, 1);
-      }
-    }
-
-    // Remove
-    if (e.target.classList.contains('remove-btn')) {
-      cart.splice(idx, 1);
-    }
-
-    renderCart();
-  });
 }
 
 
@@ -420,7 +402,6 @@ async function boot(){
   renderCart();
 
   // wire up submit & inputs
-  wireCartControls();
   wireUpFormInputs();
 }
 
