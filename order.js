@@ -21,10 +21,11 @@ const HOLIDAY_FROM = "2025-12-21";
 const HOLIDAY_TO   = "2026-01-02";
 // Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
 const BLACKOUT_WEEKDAYS = new Set([0,1,3,5]);
+const BLACKOUT_DATES = {"2026-01-03":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
 
 /* ================== State ================== */
 
-let cart = []; // array of { item, size, price, qty }
+let cart = []; // array of { item, size, price, qty 
 let existingOrders = {}; // map 'YYYY-MM-DD' -> integer count (fetched from backend)
 let fp = null; // flatpickr instance
 
@@ -221,6 +222,11 @@ function isDateDisabled(date){
   // holiday range
   if(inHolidayRange(date)) return true;
 
+   // blackout check: blackout[date] + cartTotalQty() > DAILY_LIMIT
+  const ds = fmtDate(date);
+  const blackout = BLACKOUT_DATES[ds] || 0;
+  if(BLACKOUT_DATES + cartTotalQty() > DAILY_LIMIT) return true;
+
   // capacity check: existingOrders[date] + cartTotalQty() > DAILY_LIMIT
   const ds = fmtDate(date);
   const existing = existingOrders[ds] || 0;
@@ -330,6 +336,7 @@ async function handleSubmit(){
   const contact = document.getElementById('contactField').value.trim();
   const date = document.getElementById('dateInput').value.trim();
   const ts = new Date()
+  const note = document.getElementById('noteField').value.trim();
 
   if(!name || !contact || !date || cart.length === 0){
     alert('Please provide full name, contact, pickup date, and at least one item in the cart.');
@@ -343,6 +350,7 @@ async function handleSubmit(){
    formData.append('Contact', contact);
    formData.append('Pickup', date);
    formData.append('Cart', JSON.stringify(cart));
+   formData.append('Notes', note);
   const payload = formData;
 
   // POST to backend
