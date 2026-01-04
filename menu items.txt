@@ -124,7 +124,7 @@
 
         <!-- DOUBLE CHOCOLATE SOURDOUGH -->
         <article class="card" data-item="Double Chocolate Loaf">
-          <div class="title"><strong>Double Chocolage Loaf</strong></div>
+          <div class="title"><strong>Double Chocolate Loaf</strong></div>
           <!-- <img src="images/DoubleChoc.jpg" class="SmallImage" alt="DoubleChoc"> -->
           <div class="controls">
             <select class="size">
@@ -308,7 +308,7 @@
           <div class="controls">
             <select class="size">
               <option value="">Size…</option>
-              <option value="1 Dozen" data-price="7">1 Dozen — $7</option>
+              <option value="1 Dozen" data-price="8">1 Dozen — $8</option>
             </select>
             <select class="qty">
               <option value="">Qty</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
