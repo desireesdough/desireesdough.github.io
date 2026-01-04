@@ -21,7 +21,7 @@ const HOLIDAY_FROM = "2025-12-21";
 const HOLIDAY_TO   = "2026-01-02";
 // Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
 const BLACKOUT_WEEKDAYS = new Set([0,1,3,5]);
-const BLACKOUT_DATES = {"2026-01-03":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
+const BLACKOUT_DATES = {"2026-01-06":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
 
 /* ================== State ================== */
 
