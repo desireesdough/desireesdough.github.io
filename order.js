@@ -228,7 +228,6 @@ function isDateDisabled(date){
   if(BLACKOUT_DATES + cartTotalQty() > DAILY_LIMIT) return true;
 
   // capacity check: existingOrders[date] + cartTotalQty() > DAILY_LIMIT
-  const ds = fmtDate(date);
   const existing = existingOrders[ds] || 0;
   if(existing + cartTotalQty() > DAILY_LIMIT) return true;
 
