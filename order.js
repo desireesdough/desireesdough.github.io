@@ -105,8 +105,11 @@ function renderCart(){
 
 
 /* Utility: compute total qty in cart */
-function cartTotalQty(){
-  return cart.reduce((s,i)=>s + (i.Quantity || 0), 0);
+function cartTotalQty() {
+  return cart.reduce((s, i) => {
+    if (i.itemName === "Double Chocolate Brownies") return s;
+    return s + (i.Quantity || 0);
+  }, 0);
 }
 
 /* ================== Menu Card Behavior ================== */
