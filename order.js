@@ -228,7 +228,7 @@ function isDateDisabled(date){
    // blackout check: blackout[date] + cartTotalQty() > DAILY_LIMIT
   const ds = fmtDate(date);
   const blackout = BLACKOUT_DATES[ds] || 0;
-  if(BLACKOUT_DATES + cartTotalQty() > DAILY_LIMIT) return true;
+  if(blackout + cartTotalQty() > DAILY_LIMIT) return true;
 
   // capacity check: existingOrders[date] + cartTotalQty() > DAILY_LIMIT
   const existing = existingOrders[ds] || 0;
