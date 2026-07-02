@@ -17,8 +17,8 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycby0WxAXoM9B7qZSfHV
 
 // Business rules
 const DAILY_LIMIT = 9;
-const HOLIDAY_FROM = "2026-06-20";
-const HOLIDAY_TO   = "2026-06-30";
+const HOLIDAY_FROM = "2026-07-04";
+const HOLIDAY_TO   = "2026-07-16";
 // Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
 const BLACKOUT_WEEKDAYS = new Set([0,1,3,5]);
 const BLACKOUT_DATES = {"2026-06-04":10, "2026-05-14":10, "2026-05-26":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
