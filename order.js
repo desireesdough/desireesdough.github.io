@@ -17,11 +17,12 @@ const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycby0WxAXoM9B7qZSfHV
 
 // Business rules
 const DAILY_LIMIT = 9;
-const HOLIDAY_FROM = "2026-07-04";
-const HOLIDAY_TO   = "2026-07-16";
+const HOLIDAY_FROM = "2026-11-25";
+const HOLIDAY_TO   = "2026-11-30";
 // Weekday blackout: Sunday=0, Tuesday=2, Thursday=4
 const BLACKOUT_WEEKDAYS = new Set([0,1,3,5]);
-const BLACKOUT_DATES = {"2026-10-08":10, "2026-10-15":10, "2026-10-17":10, "2026-10-29":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
+const BLACKOUT_DATES = {"2026-11-10":10, "2026-11-15":10, "2026-10-17":10, "2026-10-29":10} // add date in format YYYY-MM-DD, followed by colon, followed by 10. Separate with commas if adding multiple
+const WHITELIST_DATES = ["2026-11-20","2026-11-22"]
 
 /* ================== State ================== */
 
@@ -220,7 +221,7 @@ function isDateDisabled(date){
   if(date < minDate || date > maxDate) return true;
 
   // blacklist weekdays
-  if(BLACKOUT_WEEKDAYS.has(date.getDay())) return true;
+  if(BLACKOUT_WEEKDAYS.has(date.getDay()) && !WHITELIST_DATES.has(date)) return true;
 
   // holiday range
   if(inHolidayRange(date)) return true;
