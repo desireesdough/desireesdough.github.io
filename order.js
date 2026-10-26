@@ -221,7 +221,7 @@ function isDateDisabled(date){
   if(date < minDate || date > maxDate) return true;
 
   // blacklist weekdays
-  if(BLACKOUT_WEEKDAYS.has(date.getDay()) || WHITELIST_DATES.has(date)) return true;
+  if(BLACKOUT_WEEKDAYS.has(date.getDay())) return true;
 
   // holiday range
   if(inHolidayRange(date)) return true;
